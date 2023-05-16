@@ -619,7 +619,7 @@ def large_residuals(fo,threshold_us,threshold_dm=None,*,n_sigma=None,max_sigma=N
     log.info(f'Selecting {sum(mask)} TOAs of {fo.toas.ntoas} ({sum(c)} removed) based on large_residual() criteria.')
     return fo.toas[mask]
 
-def compare_models(fo,model_to_compare=None,verbosity='check',threshold_sigma=3.,nodmx=True):
+def compare_models(fo,model_to_compare=None,verbosity='check',threshold_sigma=3.,nodmx=True,fmt='text'):
     """Wrapper function to compare post-fit results to a user-specified comparison model.
 
     Parameters
@@ -634,6 +634,9 @@ def compare_models(fo,model_to_compare=None,verbosity='check',threshold_sigma=3.
         sigma cutoff for parameter comparison
     nodmx: bool, optional
         when True, omit DMX comparison
+    fmt: string, optional 
+        text: return as a plain text (default)
+        markdown: return as a markdown object
 
     Returns
     =======
@@ -645,7 +648,7 @@ def compare_models(fo,model_to_compare=None,verbosity='check',threshold_sigma=3.
         comparemodel=models.get_model(model_to_compare)
     else:
         comparemodel=fo.model_init
-    return comparemodel.compare(fo.model,verbosity=verbosity,nodmx=nodmx,threshold_sigma=threshold_sigma)
+    return comparemodel.compare(fo.model,verbosity=verbosity,nodmx=nodmx,threshold_sigma=threshold_sigma,format=fmt)
 
 def remove_noise(model, noise_components=['ScaleToaError','ScaleDmError',
     'EcorrNoise','PLRedNoise']):

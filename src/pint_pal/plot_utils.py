@@ -343,6 +343,8 @@ def plot_residuals_time(fitter, restype = 'postfit', plotsig = False, avg = Fals
     RCVR_BCKNDS = set(rcvr_bcknds)
 
 
+
+
     if 'figsize' in kwargs.keys():
         figsize = kwargs['figsize']
     else:
